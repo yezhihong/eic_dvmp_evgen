@@ -764,6 +764,7 @@ class pim {
  public:
   double test();
   void Initilize();
+  void setrootfile();
   int CheckLaws(TLorentzVector P_E0, TLorentzVector P_t, TLorentzVector P_e, TLorentzVector P_pim, TLorentzVector P_pro);
   void setrootfile( string myRootFile );
   double fermiMomentum();

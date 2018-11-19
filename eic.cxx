@@ -55,7 +55,7 @@ double pim::fermiMomentum() {
 
 int main()
 {
-  double cos_t, sin_t;
+  //double cos_t, sin_t;
   pim myPim;
   myPim.Initilize();
 
@@ -88,14 +88,14 @@ int main()
   ofstream ppiOut ( sLFile.c_str() );
   ofstream ppiDetails ( sTFile.c_str() );
 
-  // myPim.setrootfile( sRFile );
+  myPim.setrootfile( sRFile );
 
   int qsq_ev = 0, t_ev = 0, w_neg_ev = 0, w_ev = 0;
   double lpar0 = 0., lpar1 = 0., lpar2 = 0., lpar3 = 0., lpar4 = 0., lpar5 = 0., lpar6 = 0.;
   double tpar0 = 0., tpar1 = 0., tpar2 = 0., tpar3 = 0., tpar4 = 0.;
 
-  //  t1->SetDirectory( f );     
-  //  t1->SetAutoSave( 1000000000 );  
+  t1->SetDirectory( f );     
+  t1->SetAutoSave( 1000000000 );  
 
   long long int i;
   for ( i = 0; i < fNEvents; i++ ) {
@@ -671,7 +671,7 @@ int main()
     fLundRecorded++;
     fRatio = fNRecorded / fNGenerated;
 
-    // t1->Fill();
+    t1->Fill();
     ppiOut << "3"
 	   << " \t " << fPhi           // var 1
 	   << " \t " << fPhiS          // var 2
@@ -741,13 +741,8 @@ int main()
     // }
   } // This is the loop over total events.
 
-  ppiOut.close();
-
-  // t1->Write();
-
-  tTime.Stop();
+    tTime.Stop();
   tTime.Print();
-  // f->Close();
   TDatime deTime;
   cout << "End Time:   " << deTime.GetHour() << ":" << deTime.GetMinute() << endl;
 
@@ -765,7 +760,11 @@ int main()
   ppiDetails << "Number of lund events                        " << setw(50) << fLundRecorded << endl;
   
   ppiDetails.close();
-  
+  ppiOut.close();
+  t1->Write();
+  f->Close();
+
+
   return 0;
 }
 # endif

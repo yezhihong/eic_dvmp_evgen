@@ -9,12 +9,11 @@
 
 using namespace std;
 
-void pim::Initilize() {
-
+void pim::Initilize() { /*{{{*/
   fRandom = new TRandom2(0);
   fRandom->GetSeed();
 
-  allset                                      = false;
+  allset                                      = false;/*{{{*/
   print                                       = false;
   kCalcFermi                                  = false;
   kCalcBremss                                 = false;
@@ -23,24 +22,32 @@ void pim::Initilize() {
   kCalcIonEle                                 = false;
   kFSI                                        = false;
   kMSele                                      = false;
-  kMS                                         = false;
+  kMS                                         = false;/*}}}*/
   
-  fLumi                                       = 0.374e33; // https://eic.jlab.org/wiki/index.php/EIC_luminosity
+
+  //////////////////////////////////////
+  //
+  // Change your kinematic setting here!
+  //
+  //////////////////////////////////////
+  fLumi                                       = 1.000e33; // https://eic.jlab.org/wiki/index.php/EIC_luminosity, changed into EicC
   fuBcm2                                      = 1.0e-30;
   fPI                                         = 3.1415926;
   fDEG2RAD                                    = fPI/180.0;
   fRAD2DEG                                    = 180.0/fPI;
-  fEBeam                                      = 5.0;  // GeV
-  fPBeam                                      = 100; // 49.9912; // GeV
-  fScatElec_Theta_I                           = 60.0 * fDEG2RAD;
-  fScatElec_Theta_F                           = 175.0 * fDEG2RAD;
+  fEBeam                                      = 3.5;  // GeV
+  fPBeam                                      = 20.0; // GeV
+  fScatElec_Theta_I                           = 180.0 * fDEG2RAD;
+  fScatElec_Theta_F                           = 180.0 * fDEG2RAD;
   fScatElec_E_Lo                              = 0.5;  // % of beam energy
   fScatElec_E_Hi                              = 2.5;  // % of beam energy
   fPion_Theta_I                               = 0.0 * fDEG2RAD;
-  fPion_Theta_F                               = 50.0 * fDEG2RAD;
+  fPion_Theta_F                               = 180.0 * fDEG2RAD;
   fPSF                                        = ( fEBeam * ( fScatElec_E_Hi - fScatElec_E_Lo ) * 
 						  ( sin( fScatElec_Theta_F ) - sin( fScatElec_Theta_I ) ) * 2 * fPI * 
 						  ( sin( fPion_Theta_F     ) - sin( fPion_Theta_I     ) ) * 2 * fPI );
+
+  //constants{{{
   fK                                          = 1000.0;
   fm                                          = 1.0/1000.0;
   fElectron_Mass                              = 0.511;
@@ -59,8 +66,9 @@ void pim::Initilize() {
   fAlpha                                      = 1./137.036;
   fMom_Ratio                                  = 0.460029;
   fMom_Dif                                    = 0.01;
-  fPi                                         = TMath::Pi(); 
-  fMandSConserve                              = 0;
+  fPi                                         = TMath::Pi(); /*}}}*/
+
+  fMandSConserve                              = 0;/*{{{*/
   fEnergyConserve                             = 0;
   fXMomConserve                               = 0;
   fYMomConserve                               = 0;
@@ -98,10 +106,11 @@ void pim::Initilize() {
   fSNotEqual                                  = 0;
   fVertex_X                                   = 0;
   fVertex_Y                                   = 0;
-  fVertex_Z                                   = 0;
-  fProton_Energy_Col                          = 0;
+  fVertex_Z                                   = 0;/*}}}*/
+
+  fProton_Energy_Col                          = 0;/*{{{*/
   fProton_Mom_Col                             = 0;
-  fProton_Theta_Col                           = 0;
+    fProton_Theta_Col                           = 0;
   fProton_Phi_Col                             = 0;
   fProton_MomZ_Col                            = 0;
   fProton_MomX_Col                            = 0;
@@ -110,8 +119,9 @@ void pim::Initilize() {
   fProton_Mom_Col_GeV                         = 0;
   fProton_MomX_Col_GeV                        = 0;
   fProton_MomY_Col_GeV                        = 0;
-  fProton_MomZ_Col_GeV                        = 0;
-  fTarget_Energy_Col                          = 0;
+  fProton_MomZ_Col_GeV                        = 0;/*}}}*/
+
+  fTarget_Energy_Col                          = 0;/*{{{*/
   fTarget_Mom_Col                             = 0;
   fTarget_Theta_Col                           = 0;
   fTarget_Phi_Col                             = 0;
@@ -130,13 +140,15 @@ void pim::Initilize() {
   fTarget_Pol0_RF                             = 0;
   fTarget_PolX_RF                             = 0;
   fTarget_PolY_RF                             = 0;
-  fTarget_PolZ_RF                             = 0;
+  fTarget_PolZ_RF                             = 0;/*}}}*/
+  
   fBetaX_Col_RF                               = 0;
   fBetaY_Col_RF                               = 0;
   fBetaZ_Col_RF                               = 0;
   fBeta_Col_RF                                = 0;
   fGamma_Col_RF                               = 0;
-  fProton_MomX_RF                             = 0;
+  
+  fProton_MomX_RF                             = 0;/*{{{*/
   fProton_MomY_RF                             = 0;
   fProton_MomZ_RF                             = 0;
   fProton_Mom_RF                              = 0;
@@ -146,11 +158,12 @@ void pim::Initilize() {
   fProton_MomY_RF_GeV                         = 0;
   fProton_MomZ_RF_GeV                         = 0;
   fProton_Mom_RF_GeV                          = 0;
-  fProton_Kin_Col_GeV                         = 0;
+  fProton_Kin_Col_GeV                         = 0;/*}}}*/
   fScatElec_Angle                             = 0;
   fScatElec_Alpha_RF                          = 0;
   fScatElec_Beta_RF                           = 0;
-  fRadiation_Lenght_Air                       = 0;
+
+  fRadiation_Lenght_Air                       = 0;/*{{{*/
   fElectron_Targ_Thickness                    = 0;
   fElectron_Targ_Thickness_RadLen             = 0;
   fElectron_Targ_BT                           = 0;
@@ -192,9 +205,9 @@ void pim::Initilize() {
   fElectron_MS_MomY_Col                       = 0;
   fElectron_MS_Theta_Col                      = 0;
   fElectron_MS_Phi_Col                        = 0;
-  fElectron_MS_Mom_Col                        = 0;
+  fElectron_MS_Mom_Col                        = 0;/*}}}*/
 
-  fElectron_Energy_Col_GeV                    = 0;
+  fElectron_Energy_Col_GeV                    = 0;/*{{{*/
   fElectron_Mom_Col_GeV                       = 0;
   fElectron_MomX_Col_GeV                      = 0;
   fElectron_MomY_Col_GeV                      = 0;
@@ -245,14 +258,15 @@ void pim::Initilize() {
   fScatElec_MS_Mom_Col                        = 0;
   
   fScatElec_TargWindow_Bremss_Loss            = 0;
-  fScatElec_TargWindow_Ion_Loss               = 0;
+  fScatElec_TargWindow_Ion_Loss               = 0;/*}}}*/
+
   fTargWindow_Thickness                       = 0;
   fTargWindow_Thickness_RadLen                = 0;
   fTargWindow_BT                              = 0; 
   fPion_TargWindow_Ion_Loss                   = 0;
   fNeutron_TargWindow_Ion_Loss                = 0;
   
-  fPion_MS_Energy_Col                         = 0;
+  fPion_MS_Energy_Col                         = 0;/*{{{*/
   fPion_MS_MomZ_Col                           = 0;
   fPion_MS_MomX_Col                           = 0;
   fPion_MS_MomY_Col                           = 0;
@@ -310,8 +324,9 @@ void pim::Initilize() {
   fPion_FSI_MomX_Col_GeV                      = 0;
   fPion_FSI_MomY_Col_GeV                      = 0;
   fPion_FSI_MomZ_Col_GeV                      = 0;
+/*}}}*/
 
-  fNeutron_MS_Energy_Col                      = 0;
+  fNeutron_MS_Energy_Col                      = 0;/*{{{*/
   fNeutron_MS_MomZ_Col                        = 0;
   fNeutron_MS_MomX_Col                        = 0;
   fNeutron_MS_MomY_Col                        = 0;
@@ -354,8 +369,9 @@ void pim::Initilize() {
   fNeutron_Mom_Col_GeV                        = 0;
   fNeutron_MomX_Col_GeV                       = 0;
   fNeutron_MomY_Col_GeV                       = 0;
-  fNeutron_MomZ_Col_GeV                       = 0;
-  fRecoilProton_Targ_Thickness                = 0;
+  fNeutron_MomZ_Col_GeV                       = 0;/*}}}*/
+
+  fRecoilProton_Targ_Thickness                = 0;/*{{{*/
   fRecoilProton_Targ_Thickness_RadLen         = 0;
   fRecoilProton_Targ_BT                       = 0;
   fRecoilProton_Targ_Bremss_Loss              = 0;
@@ -390,8 +406,9 @@ void pim::Initilize() {
   fRecoilProton_Corrected_MomX_Col_GeV        = 0;
   fRecoilProton_Corrected_MomY_Col_GeV        = 0;
   fRecoilProton_Corrected_MomZ_Col_GeV        = 0;
-  fRecoilProton_Delta_Mom_Col_GeV             = 0;
-  fSSAsym                                     = 0;
+  fRecoilProton_Delta_Mom_Col_GeV             = 0;/*}}}*/
+
+  fSSAsym                                     = 0;/*{{{*/
   fSineAsym                                   = 0;
   fT                                          = 0;
   fT_GeV                                      = 0;
@@ -413,8 +430,9 @@ void pim::Initilize() {
   fWSq_PiN                                    = 0;   
   fWSq_PiN_GeV                                = 0;
   fWSq_Top_PiN_GeV                            = 0;
-  fWSq_Bot_PiN_GeV                            = 0;
-  fScatElec_Mom_RF                            = 0;
+  fWSq_Bot_PiN_GeV                            = 0;/*}}}*/
+  
+  fScatElec_Mom_RF                            = 0;/*{{{*/
   fScatElec_Mom_RF_GeV                        = 0;
   fScatElec_Energy_RF                         = 0;
   fScatElec_Energy_RF_GeV                     = 0;
@@ -477,14 +495,16 @@ void pim::Initilize() {
   fPion_Phi_RF                                = 0;
   fPion_MomX_RF_GeV                           = 0;
   fPion_MomY_RF_GeV                           = 0;
-  fPion_MomZ_RF_GeV                           = 0;
+  fPion_MomZ_RF_GeV                           = 0;/*}}}*/
+
   fT_Para                                     = 0;
   fT_Para_GeV                                 = 0;
   fEpsilon                                    = 0;
   fx                                          = 0;
   fy                                          = 0;
   fz                                          = 0;
-  fNeutron_Energy_RF                          = 0;
+ 
+  fNeutron_Energy_RF                          = 0;/*{{{*/
   fNeutron_Energy_RF_GeV                      = 0;
   fNeutron_Mom_RF                             = 0;
   fNeutron_Mom_RF_GeV                         = 0;
@@ -535,10 +555,12 @@ void pim::Initilize() {
   fPhoton_Mom_Col_GeV                         = 0;
   fPhoton_MomX_Col_GeV                        = 0;
   fPhoton_MomZ_Col_GeV                        = 0;
-  fPhoton_MomY_Col_GeV                        = 0;
+  fPhoton_MomY_Col_GeV                        = 0;/*}}}*/
+
   fWFactor                                    = 0;
   fA                                          = 0;
-  fZASigma_UU                                 = 0;
+
+  fZASigma_UU                                 = 0;/*{{{*/
   fRorySigma_UT                               = 0;
   fSigma_Col                                  = 0;
   fSigma_UUPara                               = 0;
@@ -600,7 +622,6 @@ void pim::Initilize() {
   fAsymPhiPlusPhi_S_Col                       = 0;
   fAsym3PhiMinusPhi_S_Col                     = 0;
   fAsym2PhiPlusPhi_S_Col                      = 0;
-
   fTerm_PhiMinusPhi_S                         = 0;
   fTerm_Phi_S                                 = 0;
   fTerm_2PhiMinusPhi_S                        = 0;
@@ -614,8 +635,9 @@ void pim::Initilize() {
   fTerm_PhiPlusPhi_S_Col                      = 0;
   fTerm_3PhiMinusPhi_S_Col                    = 0;
   fTerm_2PhiPlusPhi_S_Col                     = 0;
+/*}}}*/
 
-  fPhoton_Corrected_Theta_Col                 = 0;
+  fPhoton_Corrected_Theta_Col                 = 0;/*{{{*/
   fPhoton_Corrected_Phi_Col                   = 0;
   fPhoton_Corrected_Energy_Col                = 0;
   fPhoton_Corrected_Mom_Col                   = 0;
@@ -648,12 +670,11 @@ void pim::Initilize() {
   fSig_2Phi_Minus_PhiS_Col                    = 0;
   fSig_Phi_Plus_PhiS_Col                      = 0;
   fSig_3Phi_Minus_PhiS_Col                    = 0;
-  fSig_2Phi_Plus_PhiS_Col                     = 0;
+  fSig_2Phi_Plus_PhiS_Col                     = 0;/*}}}*/
 
-}
+}/*}}}*/
 
-
-int pim::CheckLaws(TLorentzVector P_E0, TLorentzVector P_t, TLorentzVector P_e, TLorentzVector P_pim, TLorentzVector P_pro) {
+int pim::CheckLaws(TLorentzVector P_E0, TLorentzVector P_t, TLorentzVector P_e, TLorentzVector P_pim, TLorentzVector P_pro) {/*{{{*/
   double energy_check = (P_t.E() + P_E0.E()) - (P_e.E()+P_pim.E()+P_pro.E());
   double px_check =(P_t.Px() + P_E0.Px()) - (P_e.Px()+P_pim.Px()+P_pro.Px()); 
   double py_check =(P_t.Py() + P_E0.Py()) - (P_e.Py()+P_pim.Py()+P_pro.Py()); 
@@ -672,7 +693,46 @@ int pim::CheckLaws(TLorentzVector P_E0, TLorentzVector P_t, TLorentzVector P_e, 
   
   return err;
   
-}
+}/*}}}*/
 
 //---------------------------------------------------------
+void pim::setrootfile( string myRootFile ){
+ f = new TFile ( myRootFile.c_str() );
+ t1 = new TTree("t1", "t1");
+
+ t1->Branch("ele_theta", &fElectron_Theta_Col               ,"data/D");  /*{{{*/
+ t1->Branch("ele_ene",   &fElectron_Energy_Col_GeV          ,"data/D");  
+ t1->Branch("ele_mom",   &fElectron_Mom_Col_GeV             ,"data/D");  
+ t1->Branch("ele_px",    &fElectron_MomX_Col_GeV            ,"data/D");  
+ t1->Branch("ele_py",    &fElectron_MomY_Col_GeV            ,"data/D");  
+ t1->Branch("ele_pz",    &fElectron_MomZ_Col_GeV            ,"data/D");  /*}}}*/
+
+ t1->Branch("prot_theta", &fProton_Theta_Col               ,"data/D");  /*{{{*/
+ t1->Branch("prot_ene",   &fProton_Energy_Col_GeV          ,"data/D");  
+ t1->Branch("prot_mom",   &fProton_Mom_Col_GeV             ,"data/D");  
+ t1->Branch("prot_px",    &fProton_MomX_Col_GeV            ,"data/D");  
+ t1->Branch("prot_py",    &fProton_MomY_Col_GeV            ,"data/D");  
+ t1->Branch("prot_pz",    &fProton_MomZ_Col_GeV            ,"data/D");  /*}}}*/
+
+ t1->Branch("target_theta", &fTarget_Theta_Col               ,"data/D");  /*{{{*/
+ t1->Branch("target_ene",   &fTarget_Energy_Col_GeV          ,"data/D");  
+ t1->Branch("target_mom",   &fTarget_Mom_Col_GeV             ,"data/D");  
+ t1->Branch("target_px",    &fTarget_MomX_Col_GeV            ,"data/D");  
+ t1->Branch("target_py",    &fTarget_MomY_Col_GeV            ,"data/D");  
+ t1->Branch("target_pz",    &fTarget_MomZ_Col_GeV            ,"data/D");  /*}}}*/
+
+ t1->Branch("pion_theta", &fPion_Theta_Col               ,"data/D");  /*{{{*/
+ t1->Branch("pion_ene",   &fPion_Energy_Col_GeV          ,"data/D");  
+ t1->Branch("pion_mom",   &fPion_Mom_Col_GeV             ,"data/D");  
+ t1->Branch("pion_px",    &fPion_MomX_Col_GeV            ,"data/D");  
+ t1->Branch("pion_py",    &fPion_MomY_Col_GeV            ,"data/D");  
+ t1->Branch("pion_pz",    &fPion_MomZ_Col_GeV            ,"data/D");  /*}}}*/
+ 
+ t1->Branch("pion_theta", &fPion_Corrected_Theta_Col               ,"data/D");  /*{{{*/
+ t1->Branch("pion_ene",   &fPion_Corrected_Energy_Col_GeV          ,"data/D");  
+ t1->Branch("pion_mom",   &fPion_Corrected_Mom_Col_GeV             ,"data/D");  
+ t1->Branch("pion_px",    &fPion_Corrected_MomX_Col_GeV            ,"data/D");  
+ t1->Branch("pion_py",    &fPion_Corrected_MomY_Col_GeV            ,"data/D");  
+ t1->Branch("pion_pz",    &fPion_Corrected_MomZ_Col_GeV            ,"data/D");  /*}}}*/
+}
 
