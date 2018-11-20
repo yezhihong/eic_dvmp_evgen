@@ -29,7 +29,7 @@ void pim::Initilize() { /*{{{*/
   //
   // Change your kinematic setting here!
   //
-  //////////////////////////////////////
+  //////////////////////////////////////*{{{*/
   fLumi                                       = 1.000e33; // https://eic.jlab.org/wiki/index.php/EIC_luminosity, changed into EicC
   fuBcm2                                      = 1.0e-30;
   fPI                                         = 3.1415926;
@@ -37,7 +37,7 @@ void pim::Initilize() { /*{{{*/
   fRAD2DEG                                    = 180.0/fPI;
   fEBeam                                      = 3.5;  // GeV
   fPBeam                                      = 20.0; // GeV
-  fScatElec_Theta_I                           = 180.0 * fDEG2RAD;
+  fScatElec_Theta_I                           = 0.0 * fDEG2RAD;
   fScatElec_Theta_F                           = 180.0 * fDEG2RAD;
   fScatElec_E_Lo                              = 0.5;  // % of beam energy
   fScatElec_E_Hi                              = 2.5;  // % of beam energy
@@ -46,6 +46,7 @@ void pim::Initilize() { /*{{{*/
   fPSF                                        = ( fEBeam * ( fScatElec_E_Hi - fScatElec_E_Lo ) * 
 						  ( sin( fScatElec_Theta_F ) - sin( fScatElec_Theta_I ) ) * 2 * fPI * 
 						  ( sin( fPion_Theta_F     ) - sin( fPion_Theta_I     ) ) * 2 * fPI );
+/*}}}*/
 
   //constants{{{
   fK                                          = 1000.0;
@@ -696,43 +697,3 @@ int pim::CheckLaws(TLorentzVector P_E0, TLorentzVector P_t, TLorentzVector P_e, 
 }/*}}}*/
 
 //---------------------------------------------------------
-void pim::setrootfile( string myRootFile ){
- f = new TFile ( myRootFile.c_str() );
- t1 = new TTree("t1", "t1");
-
- t1->Branch("ele_theta", &fElectron_Theta_Col               ,"data/D");  /*{{{*/
- t1->Branch("ele_ene",   &fElectron_Energy_Col_GeV          ,"data/D");  
- t1->Branch("ele_mom",   &fElectron_Mom_Col_GeV             ,"data/D");  
- t1->Branch("ele_px",    &fElectron_MomX_Col_GeV            ,"data/D");  
- t1->Branch("ele_py",    &fElectron_MomY_Col_GeV            ,"data/D");  
- t1->Branch("ele_pz",    &fElectron_MomZ_Col_GeV            ,"data/D");  /*}}}*/
-
- t1->Branch("prot_theta", &fProton_Theta_Col               ,"data/D");  /*{{{*/
- t1->Branch("prot_ene",   &fProton_Energy_Col_GeV          ,"data/D");  
- t1->Branch("prot_mom",   &fProton_Mom_Col_GeV             ,"data/D");  
- t1->Branch("prot_px",    &fProton_MomX_Col_GeV            ,"data/D");  
- t1->Branch("prot_py",    &fProton_MomY_Col_GeV            ,"data/D");  
- t1->Branch("prot_pz",    &fProton_MomZ_Col_GeV            ,"data/D");  /*}}}*/
-
- t1->Branch("target_theta", &fTarget_Theta_Col               ,"data/D");  /*{{{*/
- t1->Branch("target_ene",   &fTarget_Energy_Col_GeV          ,"data/D");  
- t1->Branch("target_mom",   &fTarget_Mom_Col_GeV             ,"data/D");  
- t1->Branch("target_px",    &fTarget_MomX_Col_GeV            ,"data/D");  
- t1->Branch("target_py",    &fTarget_MomY_Col_GeV            ,"data/D");  
- t1->Branch("target_pz",    &fTarget_MomZ_Col_GeV            ,"data/D");  /*}}}*/
-
- t1->Branch("pion_theta", &fPion_Theta_Col               ,"data/D");  /*{{{*/
- t1->Branch("pion_ene",   &fPion_Energy_Col_GeV          ,"data/D");  
- t1->Branch("pion_mom",   &fPion_Mom_Col_GeV             ,"data/D");  
- t1->Branch("pion_px",    &fPion_MomX_Col_GeV            ,"data/D");  
- t1->Branch("pion_py",    &fPion_MomY_Col_GeV            ,"data/D");  
- t1->Branch("pion_pz",    &fPion_MomZ_Col_GeV            ,"data/D");  /*}}}*/
- 
- t1->Branch("pion_theta", &fPion_Corrected_Theta_Col               ,"data/D");  /*{{{*/
- t1->Branch("pion_ene",   &fPion_Corrected_Energy_Col_GeV          ,"data/D");  
- t1->Branch("pion_mom",   &fPion_Corrected_Mom_Col_GeV             ,"data/D");  
- t1->Branch("pion_px",    &fPion_Corrected_MomX_Col_GeV            ,"data/D");  
- t1->Branch("pion_py",    &fPion_Corrected_MomY_Col_GeV            ,"data/D");  
- t1->Branch("pion_pz",    &fPion_Corrected_MomZ_Col_GeV            ,"data/D");  /*}}}*/
-}
-

@@ -1,26 +1,18 @@
-#include <iostream>
+#include <iostream>/*{{{*/
 #include "TRandom.h"
 #include "TRandom2.h"
 #include "TTree.h"
 #include "TFile.h"
 #include "TMath.h"
 #include "TVector3.h"
-#include "TLorentzVector.h"
+#include "TLorentzVector.h"/*}}}*/
 
 using namespace std;
 
 // --------------------------------------------------------------------------------------
 TRandom2 *fRandom;
 
-TFile *f;
-
-///****************************************
-/// Bill: t1 is switched from an object to a pointer
-//TTree t1("t1","Pion Form Fator Study");
-
-TTree *t1; 
-
-bool print;
+bool print;/*{{{*/
 bool allset;
 bool kCalcFermi;
 bool kCalcBremss;
@@ -30,9 +22,9 @@ bool kCalcIonEle;
 bool kSConserve;
 bool kFSI;
 bool kMSele;
-bool kMS;
+bool kMS;/*}}}*/
 
-int fWLessShell;
+int fWLessShell;/*{{{*/
 int fWLess1P9;
 int fSDiff;
 
@@ -43,9 +35,9 @@ long int fWSqNeg;
 long int fNMomConserve;
 long int fNSigmaNeg;
 long int fLundRecorded;
-long int fNFile;
+long int fNFile;/*}}}*/
 
-double fK;
+double fK;/*{{{*/
 double fm;
 double fElectron_Kin_Col_GeV;
 double fElectron_Kin_Col;
@@ -63,9 +55,9 @@ double fPion_Theta_I;
 double fPion_Theta_F;
 double fScatElec_E_Hi;
 double fScatElec_E_Lo;
-double fPSF;
+double fPSF;/*}}}*/
 
-double fMandSConserve;
+double fMandSConserve;/*{{{*/
 double fTop_Pion_Mom;
 double fBot_Pion_Mom;
 double fPion_Mom_Same;
@@ -76,9 +68,9 @@ double fZMomConserve;
 double fXMomConserve_RF;
 double fYMomConserve_RF;
 double fZMomConserve_RF;
-double fEnergyConserve_RF;
+double fEnergyConserve_RF;/*}}}*/
 
-double fDiff;
+double fDiff;/*{{{*/
 double fRatio;
 double fPion_Alpha;
 double fPion_Beta;
@@ -89,9 +81,9 @@ double fS_F_Col;
 double fS_I_RF_GeV;
 double fS_F_RF_GeV;
 double fS_I_Col_GeV;
-double fS_F_Col_GeV;
+double fS_F_Col_GeV;/*}}}*/
 
-double fProton_Energy_Col;
+double fProton_Energy_Col;/*{{{*/
 double fProton_Mom_Col;
 double fProton_Theta_Col;
 double fProton_Phi_Col;
@@ -102,9 +94,9 @@ double fProton_Energy_Col_GeV;
 double fProton_Mom_Col_GeV;
 double fProton_MomX_Col_GeV;
 double fProton_MomY_Col_GeV;
-double fProton_MomZ_Col_GeV;
+double fProton_MomZ_Col_GeV;/*}}}*/
 
-double fFSIProton_Energy_Col;
+double fFSIProton_Energy_Col;/*{{{*/
 double fFSIProton_Mom_Col;
 double fFSIProton_Theta_Col;
 double fFSIProton_Phi_Col;
@@ -115,9 +107,9 @@ double fFSIProton_Energy_Col_GeV;
 double fFSIProton_Mom_Col_GeV;
 double fFSIProton_MomX_Col_GeV;
 double fFSIProton_MomY_Col_GeV;
-double fFSIProton_MomZ_Col_GeV;
+double fFSIProton_MomZ_Col_GeV;/*}}}*/
 
-double fTarget_Energy_Col;
+double fTarget_Energy_Col;/*{{{*/
 double fTarget_Mom_Col;
 double fTarget_Theta_Col;
 double fTarget_Phi_Col;
@@ -128,24 +120,24 @@ double fTarget_Energy_Col_GeV;
 double fTarget_Mom_Col_GeV;
 double fTarget_MomX_Col_GeV;
 double fTarget_MomY_Col_GeV;
-double fTarget_MomZ_Col_GeV;
+double fTarget_MomZ_Col_GeV;/*}}}*/
 
-double fTarget_Pol0_Col;
+double fTarget_Pol0_Col;/*{{{*/
 double fTarget_PolX_Col;
 double fTarget_PolY_Col;
 double fTarget_PolZ_Col;
 double fTarget_Pol0_RF;
 double fTarget_PolX_RF;
 double fTarget_PolY_RF;
-double fTarget_PolZ_RF;
+double fTarget_PolZ_RF;/*}}}*/
 
-double fBetaX_Col_RF;
+double fBetaX_Col_RF;/*{{{*/
 double fBetaY_Col_RF;
 double fBetaZ_Col_RF;
 double fBeta_Col_RF;
-double fGamma_Col_RF;
+double fGamma_Col_RF;/*}}}*/
 
-double fProton_MomX_RF;
+double fProton_MomX_RF;/*{{{*/
 double fProton_MomY_RF;
 double fProton_MomZ_RF;
 double fProton_Mom_RF;
@@ -154,13 +146,13 @@ double fProton_MomX_RF_GeV;
 double fProton_MomY_RF_GeV;
 double fProton_MomZ_RF_GeV;
 double fProton_Mom_RF_GeV;
-double fProton_Energy_RF_GeV;
+double fProton_Energy_RF_GeV;/*}}}*/
 
-double fScatElec_Angle;    
+double fScatElec_Angle;    /*{{{*/
 double fScatElec_Alpha_RF;    
-double fScatElec_Beta_RF;
+double fScatElec_Beta_RF;/*}}}*/
 
-double fVertex_X;
+double fVertex_X;/*{{{*/
 double fVertex_Y;
 double fVertex_Z;
 double fProton_Kin_Col_GeV;
@@ -172,7 +164,7 @@ double fNeutron_Mass;
 double fNeutron_Mass_GeV;
 double fPion_Mass;
 double fPion_Mass_GeV;
-double fPiion_Phi;
+double fPion_Phi;
 double fAlpha;
 double fPi;
 double fMom_Ratio;
@@ -181,9 +173,9 @@ double fPionEnergyCMLess;
 double fSNotEqual;
 double fMode_Epsi;
 double fRecoilProton_Mass;
-double fRecoilProton_Mass_GeV;
+double fRecoilProton_Mass_GeV;/*}}}*/
 
-double fElectron_Energy_Col;
+double fElectron_Energy_Col;/*{{{*/
 double fElectron_MomZ_Col;
 double fElectron_MomX_Col;
 double fElectron_MomY_Col;
@@ -234,9 +226,9 @@ double fElectron_Corrected_Mom_Col_GeV;
 double fElectron_Corrected_MomX_Col_GeV;
 double fElectron_Corrected_MomY_Col_GeV;
 double fElectron_Corrected_MomZ_Col_GeV;
-double fElectron_Delta_Mom_Col_GeV;
+double fElectron_Delta_Mom_Col_GeV;/*}}}*/
 
-double fScatElec_MS_Energy_Col;
+double fScatElec_MS_Energy_Col;/*{{{*/
 double fScatElec_MS_MomZ_Col;
 double fScatElec_MS_MomX_Col;
 double fScatElec_MS_MomY_Col;
@@ -283,12 +275,13 @@ double fScatElec_Corrected_MomY_Col_GeV;
 double fScatElec_Corrected_MomZ_Col_GeV;
 double fScatElec_Delta_Mom_Col_GeV;
 double fScatElec_TargWindow_Bremss_Loss;
-double fScatElec_TargWindow_Ion_Loss;
-double fTargWindow_Thickness;
-double fTargWindow_Thickness_RadLen;
-double fTargWindow_BT;
+double fScatElec_TargWindow_Ion_Loss;/*}}}*/
 
-double fPion_TargWindow_Ion_Loss;
+double fTargWindow_Thickness;/*{{{*/
+double fTargWindow_Thickness_RadLen;
+double fTargWindow_BT;/*}}}*/
+
+double fPion_TargWindow_Ion_Loss;/*{{{*/
 double fPion_Targ_Thickness;
 double fPion_Targ_Thickness_RadLen;
 double fPion_Targ_BT;
@@ -347,9 +340,9 @@ double fPion_Corrected_Mom_Col_GeV;
 double fPion_Corrected_MomX_Col_GeV;
 double fPion_Corrected_MomY_Col_GeV;
 double fPion_Corrected_MomZ_Col_GeV;
-double fPion_Delta_Mom_Col_GeV;
+double fPion_Delta_Mom_Col_GeV;/*}}}*/
 
-double fNeutron_MS_Energy_Col;
+double fNeutron_MS_Energy_Col;/*{{{*/
 double fNeutron_MS_MomZ_Col;
 double fNeutron_MS_MomX_Col;
 double fNeutron_MS_MomY_Col;
@@ -393,9 +386,9 @@ double fNeutron_Corrected_Mom_Col_GeV;
 double fNeutron_Corrected_MomX_Col_GeV;
 double fNeutron_Corrected_MomY_Col_GeV;
 double fNeutron_Corrected_MomZ_Col_GeV;
-double fNeutron_Delta_Mom_Col_GeV;
+double fNeutron_Delta_Mom_Col_GeV;/*}}}*/
 
-double fRecoilProton_Energy_RF;
+double fRecoilProton_Energy_RF;/*{{{*/
 double fRecoilProton_Mom_RF;
 double fRecoilProton_MomX_RF;
 double fRecoilProton_MomY_RF;
@@ -443,9 +436,9 @@ double fRecoilProton_Corrected_Mom_Col_GeV;
 double fRecoilProton_Corrected_MomX_Col_GeV;
 double fRecoilProton_Corrected_MomY_Col_GeV;
 double fRecoilProton_Corrected_MomZ_Col_GeV;
-double fRecoilProton_Delta_Mom_Col_GeV;
+double fRecoilProton_Delta_Mom_Col_GeV;/*}}}*/
 
-double fSSAsym;
+double fSSAsym;/*{{{*/
 double fSineAsym;
 double fInvariantDif;
 double fT_GeV;
@@ -465,9 +458,9 @@ double fWSq_GeV;
 double fWSq_PiN;
 double fWSq_PiN_GeV;
 double fWSq_Top_PiN_GeV;
-double fWSq_Bot_PiN_GeV;
+double fWSq_Bot_PiN_GeV;/*}}}*/
 
-double fElec_ScatElec_Theta_RF;
+double fElec_ScatElec_Theta_RF;/*{{{*/
 double fScatElec_Cone_Phi_RF;
 double fScatElec_Theta_RF;
 double fScatElec_Phi_RF;
@@ -480,9 +473,9 @@ double fScatElec_Energy_RF_GeV;
 double fScatElec_Mom_RF_GeV;
 double fScatElec_MomX_RF_GeV;
 double fScatElec_MomY_RF_GeV;
-double fScatElec_MomZ_RF_GeV;
+double fScatElec_MomZ_RF_GeV;/*}}}*/
 
-double fElectron_Theta_RF;
+double fElectron_Theta_RF;/*{{{*/
 double fElectron_Phi_RF;
 double fElectron_Energy_RF;
 double fElectron_Mom_RF;
@@ -493,14 +486,14 @@ double fElectron_Energy_RF_GeV;
 double fElectron_Mom_RF_GeV;
 double fElectron_MomX_RF_GeV;
 double fElectron_MomZ_RF_GeV;
-double fElectron_MomY_RF_GeV;
+double fElectron_MomY_RF_GeV;/*}}}*/
 
-double fPhoton_Energy_RF_GeV;
+double fPhoton_Energy_RF_GeV;/*{{{*/
 double fPhoton_Mom_RF_GeV;
 double fPhoton_Energy_RF;
-double fPhoton_Mom_RF;
+double fPhoton_Mom_RF;/*}}}*/
 
-double fProton_Energy_CM;
+double fProton_Energy_CM;/*{{{*/
 double fProton_Mom_CM;
 double fProton_Energy_CM_GeV;
 double fProton_Mom_CM_GeV;
@@ -519,12 +512,12 @@ double fNeutron_Phi_CM;
 double fNeutron_Energy_CM;
 double fNeutron_Energy_CM_GeV;
 double fNeutron_Mom_CM;
-double fNeutron_Mom_CM_GeV;
+double fNeutron_Mom_CM_GeV;/*}}}*/
 
 double fBeta_CM_RF;
 double fGamma_CM_RF;
 
-double fPhoton_MomZ_RF;
+double fPhoton_MomZ_RF;/*{{{*/
 double fPhoton_MomX_RF;
 double fPhoton_MomY_RF;
 double fPhoton_Theta_RF;
@@ -541,8 +534,7 @@ double fPion_Theta_RF;
 double fPion_Phi_RF;
 double fPion_MomX_RF_GeV;
 double fPion_MomY_RF_GeV;
-double fPion_MomZ_RF_GeV;
-
+double fPion_MomZ_RF_GeV;/*}}}*/
 
 double fT_Para;
 double fT_Para_GeV;
@@ -551,7 +543,8 @@ double fEpsilon;
 double fx;
 double fy;
 double fz;
-double fNeutron_Energy_RF;
+
+double fNeutron_Energy_RF;/*{{{*/
 double fNeutron_Energy_RF_GeV;
 double fNeutron_Mom_RF;
 double fNeutron_Mom_RF_GeV;
@@ -566,9 +559,9 @@ double fPhoton_MomY_RF_GeV;
 double fPhoton_MomZ_RF_GeV;
 double fNeutron_MomX_RF_GeV;
 double fNeutron_MomY_RF_GeV;
-double fNeutron_MomZ_RF_GeV;
+double fNeutron_MomZ_RF_GeV;/*}}}*/
 
-double fPhoton_Theta_Col;
+double fPhoton_Theta_Col;/*{{{*/
 double fPhoton_Phi_Col;
 double fPhoton_Energy_Col;
 double fPhoton_Mom_Col;
@@ -592,9 +585,9 @@ double fPhoton_Corrected_Energy_Col_GeV;
 double fPhoton_Corrected_Mom_Col_GeV;
 double fPhoton_Corrected_MomX_Col_GeV;
 double fPhoton_Corrected_MomZ_Col_GeV;
-double fPhoton_Corrected_MomY_Col_GeV;
+double fPhoton_Corrected_MomY_Col_GeV;/*}}}*/
 
-double fQsq_Corrected_GeV;
+double fQsq_Corrected_GeV;/*{{{*/
 double fQsq_Corrected;
 double fW_Corrected;
 double fW_Corrected_GeV;
@@ -602,9 +595,9 @@ double fT_Corrected;
 double fT_Corrected_GeV;
 double fx_Corrected;
 double fy_Corrected;
-double fz_Corrected;
+double fz_Corrected;/*}}}*/
 
-double fWFactor;
+double fWFactor;/*{{{*/
 double fA;
 double fFlux_Factor_Col;
 double fFlux_Factor_RF;
@@ -650,9 +643,9 @@ double fCatchenWeight;
 double fPhi;
 double fPhiS;
 double fPhi_Corrected;
-double fPhiS_Corrected;
+double fPhiS_Corrected;/*}}}*/
 
-double fElectron_Mom_Sq_RF;
+double fElectron_Mom_Sq_RF;/*{{{*/
 double fElectron_Mom_Sq_Col;
 double fProton_Mom_Sq_Col;
 double fProton_Mom_Sq_CM;
@@ -667,9 +660,9 @@ double fNeutron_Mom_Sq_Col;
 double fNeutron_Mom_Sq_CM;
 double fNeutron_Mom_Sq_RF;
 double fScatElec_Mom_Sq_Col;
-double fScatElec_Mom_Sq_RF;
+double fScatElec_Mom_Sq_RF;/*}}}*/
 
-double fAsymPhiMinusPhi_S;
+double fAsymPhiMinusPhi_S;/*{{{*/
 double fAsymPhi_S;
 double fAsym2PhiMinusPhi_S;
 double fAsymPhiPlusPhi_S;
@@ -719,14 +712,14 @@ double fSig_PhiS_Col;
 double fSig_2Phi_Minus_PhiS_Col;
 double fSig_Phi_Plus_PhiS_Col;
 double fSig_3Phi_Minus_PhiS_Col;
-double fSig_2Phi_Plus_PhiS_Col;
+double fSig_2Phi_Plus_PhiS_Col;/*}}}*/
 
 double fepi1;
 double fepi2;
 double fradical;
 
 double fMomentum[300];
-double fProb[300] = {    
+double fProb[300] = {    /*{{{*/
 6.03456,    6.02429,    6.01155,    5.99636,    5.97873,    5.95869,    5.93626,    5.91147,    5.88435,    5.85493,
 5.82325,    5.78935,    5.75326,    5.71504,    5.67472,    5.63235,    5.58799,    5.54169,     5.4935,    5.44347,		   
 5.39167,    5.33816,    5.28299,    5.22623,    5.16794,    5.10818,    5.04703,    4.98455,    4.92081,    4.85588,
@@ -757,10 +750,9 @@ double fProb[300] = {
 0.00471604, 0.00457069, 0.00442984, 0.00429336,  0.0041611, 0.00403295, 0.00390877, 0.00378843, 0.00367182, 0.00355882,			   
 0.00344932, 0.00334321, 0.00324038, 0.00314073, 0.00304505,  0.0029524, 0.00286252, 0.00277533, 0.00269076, 0.00260872,			   
 0.00252913, 0.00245194, 0.00237706, 0.00230444, 0.00223399, 0.00216566, 0.00209939, 0.00203512, 0.00197277, 0.00191231 };
+/*}}}*/
 
-
-class pim {
-
+class pim {/*{{{*/
  public:
   double test();
   void Initilize();
@@ -771,4 +763,4 @@ class pim {
   /* double correctedPhi(); */
   /* double correctedPhiS(); */
 
-};
+};/*}}}*/
