@@ -30,23 +30,20 @@ void pim::Initilize() { /*{{{*/
   // Change your kinematic setting here!
   //
   //////////////////////////////////////*{{{*/
-  fLumi                                       = 1.000e33; // https://eic.jlab.org/wiki/index.php/EIC_luminosity, changed into EicC
   fuBcm2                                      = 1.0e-30;
   fPI                                         = 3.1415926;
   fDEG2RAD                                    = fPI/180.0;
   fRAD2DEG                                    = 180.0/fPI;
-  fEBeam                                      = 3.5;  // GeV
-  fPBeam                                      = 20.0; // GeV
-  fScatElec_Theta_I                           = 0.0 * fDEG2RAD;
-  fScatElec_Theta_F                           = 180.0 * fDEG2RAD;
+  fEBeam                                      = 5.0;  // GeV
+  fPBeam                                      = 100.0; // GeV
+  fLumi                                       = 1.000e34; // https://eic.jlab.org/wiki/index.php/EIC_luminosity, changed into EicC
+  fScatElec_Theta_I                           = 60.0 * fDEG2RAD;
+  fScatElec_Theta_F                           = 175.0 * fDEG2RAD;
   fScatElec_E_Lo                              = 0.5;  // % of beam energy
   fScatElec_E_Hi                              = 2.5;  // % of beam energy
   fPion_Theta_I                               = 0.0 * fDEG2RAD;
-  fPion_Theta_F                               = 180.0 * fDEG2RAD;
-  fPSF                                        = ( fEBeam * ( fScatElec_E_Hi - fScatElec_E_Lo ) * 
-						  ( sin( fScatElec_Theta_F ) - sin( fScatElec_Theta_I ) ) * 2 * fPI * 
-						  ( sin( fPion_Theta_F     ) - sin( fPion_Theta_I     ) ) * 2 * fPI );
-/*}}}*/
+  fPion_Theta_F                               = 50.0 * fDEG2RAD;
+  /*}}}*/
 
   //constants{{{
   fK                                          = 1000.0;
@@ -97,7 +94,7 @@ void pim::Initilize() { /*{{{*/
   fRatio                                      = 0;
   fWLessShell                                 = 0;
   fWLess1P9                                   = 0;
-  fWSqNeg                                     = 0;
+  fWsqNeg                                     = 0;
   fNSigmaNeg                                  = 0;
   fNMomConserve                               = 0;
   fSDiff                                      = 0;
@@ -426,12 +423,12 @@ void pim::Initilize() { /*{{{*/
   fW_GeV                                      = 0;
   fW_Prime_GeV                                = 0;
   fW_Corrected_Prime_GeV                      = 0;
-  fWSq                                        = 0;   
-  fWSq_GeV                                    = 0;
-  fWSq_PiN                                    = 0;   
-  fWSq_PiN_GeV                                = 0;
-  fWSq_Top_PiN_GeV                            = 0;
-  fWSq_Bot_PiN_GeV                            = 0;/*}}}*/
+  fWsq                                        = 0;   
+  fWsq_GeV                                    = 0;
+  fWsq_PiN                                    = 0;   
+  fWsq_PiN_GeV                                = 0;
+  fWsq_Top_PiN_GeV                            = 0;
+  fWsq_Bot_PiN_GeV                            = 0;/*}}}*/
   
   fScatElec_Mom_RF                            = 0;/*{{{*/
   fScatElec_Mom_RF_GeV                        = 0;

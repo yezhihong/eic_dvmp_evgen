@@ -31,7 +31,7 @@ int fSDiff;
 long int fNEvents;
 long int fNRecorded;
 long int fNGenerated;
-long int fWSqNeg;
+long int fWsqNeg;
 long int fNMomConserve;
 long int fNSigmaNeg;
 long int fLundRecorded;
@@ -453,12 +453,12 @@ double fW;
 double fW_GeV;
 double fW_Prime_GeV;
 double fW_Corrected_Prime_GeV;
-double fWSq;
-double fWSq_GeV;
-double fWSq_PiN;
-double fWSq_PiN_GeV;
-double fWSq_Top_PiN_GeV;
-double fWSq_Bot_PiN_GeV;/*}}}*/
+double fWsq;
+double fWsq_GeV;
+double fWsq_PiN;
+double fWsq_PiN_GeV;
+double fWsq_Top_PiN_GeV;
+double fWsq_Bot_PiN_GeV;/*}}}*/
 
 double fElec_ScatElec_Theta_RF;/*{{{*/
 double fScatElec_Cone_Phi_RF;

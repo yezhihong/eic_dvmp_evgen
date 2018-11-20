@@ -11,10 +11,10 @@ O=eic
 
 # Linux with g++
 INCLUDES      = -I$(ROOTSYS)/include -I$(ROOTINC) 
-CXX           = clang++
-#CXX           = g++
-LD            = clang++
-#LD            = g++
+#CXX           = clang++
+CXX           = g++
+#LD            = clang++
+LD            = g++
 LDFLAGS       = 
 
 LIBS          = $(ROOTLIBS) 

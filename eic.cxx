@@ -79,6 +79,20 @@ int main()
     if( target_direction == 1 ) targetname = "up";
     if( target_direction == 2 ) targetname = "down";
 
+    fLumi = 1.000e34; 
+    if(fEBeam<4.0 && fPBeam<30){//Chinese EIC
+        fLumi = 1.000e33; 
+        fScatElec_Theta_I = 60.0 * fDEG2RAD;
+        fScatElec_Theta_F = 175.0 * fDEG2RAD;
+        fScatElec_E_Lo    = 0.5;  // % of beam energy
+        fScatElec_E_Hi    = 2.5;  // % of beam energy
+        fPion_Theta_I     = 0.0 * fDEG2RAD;
+        fPion_Theta_F     = 120.0 * fDEG2RAD;
+    }
+    fPSF = ( fEBeam * ( fScatElec_E_Hi - fScatElec_E_Lo ) * 
+            ( sin( fScatElec_Theta_F ) - sin( fScatElec_Theta_I ) ) * 2 * fPI * 
+            ( sin( fPion_Theta_F     ) - sin( fPion_Theta_I     ) ) * 2 * fPI );
+
     string sTFile;
     sTFile = Form("./LundFiles/eic_demp_E%2.1fGeV_P%dGeV_%i.txt",fEBeam, (int)fPBeam,(int)fNFile);
     string sRFile;
@@ -141,13 +155,13 @@ int main()
     t1->Branch("x",    &fx             ,"data/D"); 
     t1->Branch("y",    &fy             ,"data/D"); 
     t1->Branch("z",    &fz             ,"data/D"); 
-    t1->Branch("t",    &fT             ,"data/D"); 
+    t1->Branch("t",    &fT_GeV             ,"data/D"); 
     t1->Branch("t_para",    &fT_Para_GeV             ,"data/D"); 
     t1->Branch("Epsilon",    &fEpsilon             ,"data/D"); 
     t1->Branch("PSF",    &fPSF            ,"data/D"); 
     t1->Branch("Lumi",    &fLumi           ,"data/D"); 
     t1->Branch("Q2",    &fQsq_GeV             ,"data/D"); 
-    t1->Branch("W2",    &fWSq_GeV             ,"data/D"); 
+    t1->Branch("W2",    &fWsq_GeV             ,"data/D"); 
     t1->Branch("Wp",    &fW_Prime_GeV             ,"data/D"); 
     t1->Branch("weight",    &fEventWeight   ,"data/D"); 
     t1->Branch("Jacobian",    &fJacobian_CM_Col, "data/D");
@@ -192,7 +206,8 @@ int main()
         TDatime dFractTime;  
         fNGenerated ++;    
 
-        if ( i % ( fNEvents / 10 ) == 0 ) {
+        //if ( i % ( fNEvents / 10 ) == 0 ) {
+        if ( i % ( 1000000 ) == 0 ) {
             cout << "Event: " << setw(8) << i 
                 << "     % of events " << setw(4) << ((1.0*i)/(1.0*fNEvents))*100.0
                 << "   Day: " <<  dFractTime.GetDay() 
@@ -317,9 +332,9 @@ int main()
         TLorentzVector lwg;
         lwg = lprotong + lphotong;
         fW_GeV    = lwg.Mag();
-        fWSq_GeV  = lwg.Mag2();
+        fWsq_GeV  = lwg.Mag2();
 
-        if ( fWSq_GeV < 0 ) { 
+        if ( fWsq_GeV < 0 ) { 
             w_neg_ev++;
             continue;
         }    /*}}}*/
@@ -860,7 +875,7 @@ ppiDetails << "Number of events with wsq negative           " << setw(50) << w_n
 ppiDetails << "Number of events with qsq less than 4        " << setw(50) << qsq_ev     << endl;
 ppiDetails << "Number of events with -t more than threshold " << setw(50) << t_ev       << endl;
 
-ppiDetails << "Number of events with w less than threshold  " << setw(50) << fWSqNeg       << endl;
+ppiDetails << "Number of events with w less than threshold  " << setw(50) << fWsqNeg       << endl;
 ppiDetails << "Number of events with mom not conserve       " << setw(50) << fNMomConserve << endl;
 ppiDetails << "Number of events with Sigma negative         " << setw(50) << fNSigmaNeg    << endl;
 ppiDetails << "Number of lund events                        " << setw(50) << fLundRecorded << endl;/*}}}*/
@@ -873,7 +888,7 @@ cout << "Number of events with wsq negative           " << setw(50) << w_neg_ev 
 cout << "Number of events with qsq less than 4        " << setw(50) << qsq_ev     << endl;
 cout << "Number of events with -t more than threshold " << setw(50) << t_ev       << endl;
 
-cout << "Number of events with w less than threshold  " << setw(50) << fWSqNeg       << endl;
+cout << "Number of events with w less than threshold  " << setw(50) << fWsqNeg       << endl;
 cout << "Number of events with mom not conserve       " << setw(50) << fNMomConserve << endl;
 cout << "Number of events with Sigma negative         " << setw(50) << fNSigmaNeg    << endl;
 cout << "Number of lund events                        " << setw(50) << fLundRecorded << endl;/*}}}*/

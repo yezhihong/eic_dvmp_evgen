@@ -12,14 +12,14 @@ set pol = 1
 #type: 1->FF, 2->TSSA
 set type = 2
 
-while ( $j < 1 )
+while ( $j < 10 )
 
    << EOF ./eic
 $ebeam
 $pbeam
 $pol
 $type
-10000000
+1000000000
 $j
 EOF
       
